@@ -1,0 +1,90 @@
+
+Q. Are there any nodes with outgoing links to every other node? If so, which nodes? Are there any nodes with in-links from every other node? If so, which nodes?
+Matrix
+A	B	C	D	E	F
+A	0	1	0	0	0	0
+B	0	0	2	0	0	0
+C	0	0	0	0	0	0
+D	0	1	0	0	1	0
+E	0	0	0	0	0	1
+F	2	1	3	1	1	0   
+
+A -> In this network, we are trying to figure out two things: first, if any node has outgoing links to every other node, and second, if any node has incoming links from every other node.
+
+Let’s start by looking at the outgoing links. Outgoing links mean that a node points to or connects to other nodes. When we check the matrix row by row, we notice that node A only connects to node B. Node B only connects to node C. Node C does not have any outgoing links at all. Node D has outgoing links to B and E, but not to everyone. Node E only connects to F. However, when we reach node F, something interesting happens. Node F has outgoing links to A, B, C, D, and E — basically to every other node except itself. This makes F the only node that has outgoing links to all the other nodes in the network.
+
+Now, for incoming links, we check which nodes are receiving connections from others. For a node to have incoming links from every other node, it would need to appear in every other node’s outgoing list. When we scan the matrix column by column, we find that no node meets this condition. For example, node A only receives a connection from F, not from everyone else. Similarly, node B receives links from A, D, and F, but not from C or E. Since no node gets links from all the others, there is no node that has incoming links from every other node.
+
+In short, only node F has outgoing links to all other nodes, while no node has incoming links from all other nodes. This highlights that F is the most connected and central node in this network.
+
+----------------------------------------------
+
+Q. We have seen that Facebook's network is incredibly sparse. Assume it has approximately 1 billion users, each with 1000 friends on average.
+• Suppose Facebook releases its annual report and it shows that while the number of users in the network has stayed the same, the average number of friends per user has increased. Would this imply that the network density increased, decreased, or stayed the same?
+• Suppose instead that both the number of users and the average number of friends per user doubled. Would this imply the network density increased, decreased, or stayed the same?
+A -> Scenario 1: Same Users, Increased Average Friends
+If the number of users stays the same but the average number of friends per user rises, the network density increases.
+Network density measures how full the network is — it’s the ratio between the number of actual connections and the maximum possible connections. When the number of users doesn’t change, the maximum possible number of connections remains fixed. However, if every user has more friends, then the number of actual connections rises. Since the denominator (maximum possible connections) stays the same and the numerator (actual connections) gets bigger, the overall density increases.
+
+For example, if users originally had 1,000 friends on average and now they have 2,000, the number of edges (friendship links) roughly doubles. Since the maximum number of possible edges is unchanged, the density also approximately doubles.
+Thus, when the average number of friends increases without a change in user count, the network becomes denser — more tightly connected relative to what is possible.
+
+Scenario 2: Users and Average Friends Both Double
+If both the number of users and the average number of friends double, the situation is different.
+Here’s why:
+
+The number of edges increases four times. (Edges are calculated as 
+users
+×
+average friends
+/
+2
+users×average friends/2. Doubling users and doubling friends results in four times as many total connections.)
+
+The maximum possible edges also increase four times. (Maximum edges are 
+users
+×
+(
+users
+−
+1
+)
+/
+2
+users×(users−1)/2, and if you double the users, the maximum possible connections increase roughly by a factor of 4.)
+
+Since both the actual number of connections and the maximum possible number of connections grow at the same rate, network density remains constant.
+In simple terms, even though everyone has more friends and there are more people, the network’s "fullness" — how many of the possible connections are actually realized — stays about the same.
+
+Why This Matters
+Understanding density is important for understanding how social networks behave as they grow. A denser network means that users are more tightly interconnected, which can impact how information spreads, how groups form, and how influence operates across the network.
+
+In Facebook’s case, even if the platform grows massively in users and friendships, it doesn’t necessarily mean that the network becomes more interconnected in a relative sense. The overall network remains sparse unless friendships grow faster than the user base itself.
+For example, if users increased by 50% but the number of friends doubled, then density would increase, because friendships are growing faster than the possible connections.
+
+Final Summary
+More friends per user (same users) → Higher density.
+
+Doubling users and friends together → Density stays the same.
+
+---------------------------------------------------------------
+
+Q. Imagine two different undirected networks, each with the same number of nodes and links. Must both networks have the same maximum and minimum degree? Explain why or why not. Must they have the same mean degree? Explain why or why not.
+A -> Let’s think about two different undirected networks that have the same number of nodes and the same number of links. You might wonder: do they also have to have the same maximum and minimum degrees (the highest and lowest number of connections a node has)?
+
+The answer is no, they don’t have to. Even if two networks have the same overall number of nodes and links, the way the links are distributed can be very different. In one network, it’s possible that a few nodes have a lot of connections (a very high degree), while others have very few connections (a low degree). In another network with the same number of nodes and links, the connections could be spread out more evenly among the nodes. So, while the total number of links is the same, the maximum and minimum degree values can vary based on how the connections are organized.
+
+Now, what about the mean degree (the average number of connections per node)? Here, the answer is yes, they must have the same mean degree. That’s because the mean degree depends directly on the total number of links and the number of nodes. In an undirected network, each link is shared between two nodes, so the total degree across the network is simply twice the number of links. Dividing that by the number of nodes gives the mean degree. Since both networks have the same number of links and nodes, their mean degree will be identical, even if the individual node degrees are different.
+
+In short: maximum and minimum degrees can differ, but the mean degree will always be the same if the number of nodes and links are the same.
+
+----------------------------
+
+Q. Recall that in a complete network there exists a link between each pair of nodes. We know that a complete undirected network of N nodes has N(N - 1)/2 edges. Must any undirected network of N nodes and N(N - 1)/2 links be complete? Explain why or why not.
+A-> Yes, any undirected network of N nodes and exactly N(N - 1)/2 links must be complete.
+
+Here’s why: In an undirected network, a link connects two nodes without direction, and each pair of nodes can have at most one link between them. The formula N(N - 1)/2 counts the total number of distinct node pairs. If a network has exactly that many links, it means every possible pair of nodes is connected by a link — there are no missing connections.
+
+If even one link were missing, the number of links would be less than N(N - 1)/2. Thus, having N(N - 1)/2 links guarantees that the network is complete, with every node directly connected to every other node.
+
+In short, for an undirected network, reaching the maximum number of links possible (N(N - 1)/2) necessarily implies that the network is fully connected or complete.
