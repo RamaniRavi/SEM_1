@@ -1,0 +1,105 @@
+Q.2 Misinformation on Social Media Platforms (5 points)
+Examine the impact of misinformation on social media platforms and discuss how network analysis techniques, such as the study of diffusion networks, can be used to identify and combat the spread of false information. Consider the role of bots and echo chambers in the propagation of misinformation.
+
+-> Misinformation in social media can cause public confusion, political skepticism, and may even damage public health. The viral nature of content sharing allows false information to circulate more than verified facts. Social media platforms do not help the situation, as they prioritize user engagement over the accuracy of the content. 
+
+The study of the diffusion of innovations in sociological network analysis focuses on the social network of people sharing the information, and they aid in tracking how misinformation circulates. In these networks, users act as nodes while the connections like retweets, comments, or shares form the edges. These structures help identify patterns such as super spreaders and allow the tracing of misinformation’s origin while also marking the heavily circulated clusters. 
+
+False information gets spread at a fatal rate through Bots. Bots share misleading content to make it appear popular; this gives false content a greater reach. Network analysis has the ability to perform account zb and identify users with unreasonably high activity that displays repetitive behaviors. 
+
+Echo Chambers allow the users to limit access towards differing points of view while simultaneously reinforcing false information without questioning its authenticity, further enabling the spread of misinformation. 
+
+Focusing on network analysis aids in understanding the greater picture of battling and breaking down the framework that enables false information to thrive.
+
+--------------------------------------------------------
+Q.3 Web Crawling (5 points)
+ Describe the process of web crawling and its significance in managing and organizing the vast amount of data available on the internet. Evaluate the ethical considerations and potential privacy issues associated with crawling web content, including the role of robots.txt in protecting websites.
+
+---> 
+
+Web crawling refers to the automated method of browsing the internet for content in a structured way to collect and catalog it. Routers or spiders are given a set of URLs that they must retrieve and are encouraged to extract links from the retrieved documents, download them, and continue the process. This information is collected into an index which can be easily retrieved by search engines to provide pertinent information for a given query.
+
+Crawling is important because it helps control and organize the ever-increasing information present on the internet. Without crawlers, businesses such as Bing and Google wouldn’t be dynamic and give thorough information. Crawling allows for the discovery of content, indexing them, and even ranking them through means such as the PageRank algorithm.
+
+Nonetheless, some ethical concerns come with web crawling. Certain data that requires a certain level of confidentiality, especially when it comes to proprietary information, should not be subjected to public indexing. Crawling at a fast pace can lead to server overload which hinders the performance of the site. Also, non-consensual extraction of copyrighted information can boil up to legal troubles.
+
+Robots.txt does help solve this issue to an extent since it Gives the option for websites to mark pages that should not be crawled. Also, data-gathering tools are called ethical data-gathering tools if they can comply with these standards.
+
+
+-------------------------------------------------------------------------
+
+Q.8 Go to the Wikipedia article on “network science” (en.wikipedia.org/wiki/Network_science).
+
+    1. What is the out-degree of this page in the Wikipedia network? (Hint: For simplicity, in this exercise you can focus on the outgoing links in the “See also” section, which typically includes several links to other Wikipedia articles; if this section is not present, you may assume K_out =0).
+
+    2. Visit the successor nodes of the “network science” node in the Wikipedia network and report on how many of the outgoing links from this article are reciprocal.
+
+    3. Build the ego network of the “network science” node and find the largest strongly connected component. Recall that the ego network consists of one node (the ego), all of its neighbors, and all of the links among them. The definition of a directed ego network is analogous, replacing neighbors by successors.
+
+    4. What is the node in the “network science” ego network with the maximum out-degree?
+
+    5. What is the node in the “network science” ego network with the maximum in-degree?
+
+--->
+
+1. Out-degree of the "Network science" Wikipedia page
+The out-degree refers to the number of outgoing links from a particular page. In the "Network science" Wikipedia article, the "See also" section lists several related topics, each linking to another Wikipedia article. As of the latest revision, the "See also" section includes the following links:
+- Social network
+- Network theory
+- Cognitive social structures
+- Network motif
+- Default mode network
+- Social network analysis
+- Ego network
+- Personal network
+
+2. Sytem Links Outbound Connections
+
+In checking how many of the outgoing links from the "Network science" article are reciprocal, it is necessary to determine whether the articles, which were linked to the "Network science" page, link back to the "Network science" page. This can be achieved by checking whether the articles in question have a link to the “Network Science” page.
+
+Because there is a large number of links to be checked, some internal cross-referencing may be necessary for each article’s references and external links sections. This is beyond the scope of this writeup so for each of the linked articles, it is easier first to check in each of the articles whether there are links leading to them, and if any, whether there are links leading from them.
+
+3. The Goretsky graph on the Wikipedia ego network corresponding to the scientific discipline of network science is the supergraph formed by uniting all strongly connected subgraphs in which all of the vertices are reachable from every other vertex. “Ego network” is a structure that is composed of a central vertex called the “ego” along with other vertices that are directly connected to it, referred to as the “alters”.
+
+In creating an ego network of the "Network science" node, it is necessary to recognize that other articles may be listed as “ network science” or “introduction to network science” so we will look at every article that contains its links from the references section as diverse as possible.
+
+4. Node with maximum out-degree in the ego network  
+- Finding the node with the highest out-degree in the "Network science" ego network has to be done by studying the constructed ego network to find the node that has the highest number of out going links. This is only possible when the ego network is constructed as explained in the previous section.  
+
+5. Node with maximum in-degree in the ego network  
+- Identifying the node with the maximum in-degree in the "Network science" ego network also requires some bit of work in determining which node has the highest number of incoming links. The analysis also assumes the construction of the ego network, but this work can be done using various analytical approaches to the network.
+
+------------------------------------------------------------------
+Q Download the Wikipedia dataset (graphml file) from the book’s GitHub repository, in the enwiki_math folder. Use NetworkX to load the file as a directed network (digraph), then run the PageRank algorithm to compute the PageRank of each article.
+
+1. What are the top 10 articles by PageRank?
+
+2. Compare the top 10 articles by PageRank with the top 10 articles by in-degree. Are they the same? Why or why not?
+--->
+
+1. Here are the top 10 articles ranked by PageRank:
+-Mathematics
+-Mathematics Genealogy Project
+-Mathematician
+-American Mathematical Society
+-Mathematical Reviews
+-Statistics
+-Edmund F. Robertson
+-MacTutor History of Mathematics archive
+-Applied mathematics
+-Mathematical analysis
+
+2. No, they are not exactly the same.  
+- Overlap: 8 of the 10 articles appear on both lists.  
+- Differences:  
+  ->PageRank only: Statistics appears in the top 10 by PageRank but not by in-degree.  
+  -> In-degree only: International Congress of Mathematicians appears in the top 10 by in-degree but not by PageRank.  
+
+Reason:  
+In-degree counts how many articles link to a page — it measures raw popularity. PageRank is, however, importance by estimating the number and quality of incoming links. A page linked from other important or most connected articles receives more influence. So, a page with lesser but more powerful backlinks (such as Statistics) can outrank in PageRank than a page with more, but less powerful backlinks (like International Congress of Mathematicians).
+
+
+
+
+
+
