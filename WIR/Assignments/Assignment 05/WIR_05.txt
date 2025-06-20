@@ -1,0 +1,26 @@
+Q.2 BERT-Based Query Expansion (10 points)
+Discuss the role of BERT in enhancing query expansion techniques for information retrieval. Analyze how BERT's understanding of language context improves the relevance and breadth of search results. Provide examples of how BERT-based query expansion might affect the retrieval process in practical search scenarios.
+
+--->
+BERT (Bidirectional Encoder Representations from Transformers) provides deep understanding of language, which improves information retrieval technology’s query expansion features. Most techniques to query expansion today are based on simplistic synonym listing procedures or co-occurrence statistic methods, which do not take deeper meaning into account and treat terms individually. Unlike BERT, which models language bidirectionally, considering the full context of a word, most models do not understand the meaning behind queries. This allows BERT to achieve much higher accuracy in understanding queries’ semantic intent.
+
+Deploying BERT in query expansion enables generation of expansions that are richer, context-aware, and incorporate concepts and phrases that are important to the user’s actual intention. For instance, a query of “apple benefits” could be expanded to include “nutritional value,” “health advantages,” or “fruit vitamins” instead of unrelated interpretations involving the tech company. This type of expansion improves recall through identification of more relevant supporting documents while preserving precision through avoidance of irrelevant interpretations.
+
+In practice, BERT-based expansions increase the relevance of search results retrieved in specialized domains containing complex language, like medical literature or legal documents, where terms have many meanings.The improvements enabled through incorporating BERT assist in comprehending nuanced search intents, allowing personalized or conversational search systems to do far more than simply respond to queries. Overall, BERT fills lexical gaps using semantically associative constructions, which enhances user satisfaction with search results.
+
+====================================================================
+
+Q.3 Smoothing Techniques (10 points)
+Explain the purpose of smoothing techniques in language models used for information retrieval. Compare at least two different smoothing techniques and discuss how each technique affects the performance and reliability of language models in handling zero-frequency problems.
+
+--->
+Smoothing strategies in language models for information retrieval remedy the zero-frequency issue, which occurs when certain query words do not appear in a document, resulting in the document being assigned a probability of zero by the model and consequently removed from retrieval. Smoothing aims to change probability estimates to ensure every word is present and has a non-zero probability value, which strengthens the model and enhances retrieval accuracy.
+
+Two of the most widely used techniques are Jelinek-Mercer smoothing and Dirichlet prior smoothing:  
+1. Jelinek-Mercer smoothing utilizes linear interpolation between the document model and the collection (corpus) model. It adds a parameter 𝜆 which controls the contribution of the document’s observed term frequency and the corpus frequency. Backing off to corpus probabilities for missing terms makes this technique simple to implement and effective. Choosing λ, however, is critically important because poor selections may incur over-smoothing (loss of document-specificity) or under-smoothing (failure to resolve zero-frequency problems).  
+
+2. Dirichlet prior smoothing, on the other hand, combines Bayesian priors by considering term counts to be derived from a Dirichlet distribution, effectively supplying pseudo-counts for each term based on corpus statistics. Smoothing is controlled by a parameter μ, which determines the strength of the prior’s influence over the document model. Dirichlet smoothing adjusts to the length of documents, usually performs better with documents of differing sizes by providing more smoothing for shorter documents and less for longer ones.
+
+Both strategies enhance the effectiveness of language models by eliminating the zero probabilities, but due to its adaptability, retrieval results are often better with Dirichlet smoothing.
+
+
