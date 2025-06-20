@@ -1,0 +1,118 @@
+WIR A2
+
+1. Crowdsourcing Relevance Judgements (7 points)
+Discuss the implications of label accuracy issues in crowdsourced tasks and strategies to enhance label quality.
+
+--->
+Label accuracy in crowdsourced relevance judgment tasks is a major concern; if labels are inaccurate, any machine learning models or information retrieval systems built on top are almost rendered invalid. A crowdsourcing platform typically draws from a large pool of workers with a vast range of expertise, motivation levels, and conscientiousness. In turn, label quality varies immensely: from really high to really low to downright noisy and misleading. This problem is tenfold in tasks that require any nuance, e.g., semantic similarity or subjective relevance, where each worker may interpret things differently. 
+
+Label inaccuracy may result in model degradation due to incorrect ground truth being used in training or evaluation. In turn, such a model would generally be less accurate, yield biased results, and provide a really poor user experience. Moreover, low-quality labels hinder the fair evaluation of algorithmic improvements, hence blocking research progress and further development.
+
+There are several ways to ensure label quality in crowdsourced tasks. These include the use of gold questions, which are questions with an a priori known answer to test worker credibility; qualification tests for workers; and training materials provided to workers to ensure they understand the task requirements. Another mechanism is redundancy: collecting multiple judgments per item and aggregating them with majority voting or weighted methods, such as expectation-maximization.
+
+-------------------------------------------------------
+2. Evaluation Methods (7 points)
+Explain the differences between system-oriented and user-oriented evaluation methods in IR systems. What are the advantages and disadvantages of each?
+
+---> Information Retrieval (IR) systems can be evaluated through system-oriented versus user-oriented evaluation methods, the two differing in focus, benefits, and limitations. 
+
+The system-oriented evaluation looks at performance through some objective, quantifiable metrics-the well-known ones being precision, recall, F1-score, MAP, etc. It tests the IR system on some predefined set of queries and relevance judgments (test collection), without involving any real users. Within these usually benchmark tasks like TREC, this method allows fair comparisons between systems, is inexpensive, and can be easily automated not to mention that it can be repeated.
+
+Nonetheless, the downside comes from this abstraction from the real world of use. System-oriented evaluations tend to disregard anything concerning how users behave or feel, disregarding the context of use. That is to say, a system might turn out very well for the metrics but will fail in satisfying the actual requirements of its users because of an interface that doesn't support users well or queries meaningfully misunderstood.
+
+The user-oriented evaluation investigation, on the other hand, concerns itself largely with actual persons or groups of persons working with the system. The assessment leans on a variety of qualitative and quantitative methods and metrics, ranging from user studies and A/B testing to questionnaires and interviews-for user satisfaction, task completion time, and perceived relevance.
+
+Some of the advantages of this approach reveal the real-world use context, which is essential for grasping the meaning behind how the system serves human information needs.
+
+---------------------------------------------------------------
+3. Model in the Loop (9 points)
+Explain the concept of "model in the loop" as it pertains to LLMs and human assessors. What are the potential benefits and drawbacks of this approach?
+
+----> The term "model in the loop" refers to the integration of a large language model (LLM) into the human evaluation pipeline, whereby the model buttresses or interacts with human evaluators in some annotation, labeling, or decision-making task. Instead of data being entirely manually evaluated or solely dependent on the model's outputs, a collaborative loop is formed, with humans guiding the model and the model supporting or augmenting human judgment.
+
+The LLM can issue candidate answers, explanations, summaries, or labels, while the human may accept, modify, or reject the suggestions. The interaction enhances scalability for evaluation tasks while maintaining some supervision from human quality control.
+
+Benefits:
+Efficiency: A labeling model can speed up the procedure, suggesting the likely answers so that human assessors have less time and cognitive burden.
+Consistency: LLMs can ensure a predetermined level of consistency since they reduce variation in judgments across different annotators.
+Skill amplification: Lesser-skilled or less-experienced assessors may achieve higher levels with less model assistance, thereby improving the overall quality of annotations.
+
+Drawbacks:
+Bias propagation: If the suggestions made by the model are not great, the human assessors might acquiesce to an erroneous suggestion without spotting its error, hence inducing confirmation bias.
+Over-trust: Humans become complacent and replay outputs of the models instead of critically engaging with them and exercising their own judgment.
+Transparency and accountability: This creates difficulty in[interruption]
+---------------------------------------------------------
+
+Query Expansion (5 points)
+Given the original query "AI in medicine", manually generate an expanded query using synonyms and related terms.
+
+Expanded Query:  
+
+("artificial intelligence" OR "AI" OR "machine learning") AND ("medicine" OR "healthcare" OR "medical" OR "diagnosis")
+
+-------------------------------------------------------------
+
+Generate a synonym list for the query "smartphone features" to use in query expansion.
+
+Synonyms for "smartphone": mobile phone,  cell phone,  mobile device,  handheld device,  cellular phone,  smart device
+Synonyms for "features": specifications,  specs,  capabilities,  functionalities,  attributes,  characteristics,  options,  components
+
+------------------------------------------------------------------
+Plot Document Frequencies (15 points)
+Write a Python script to plot the document frequencies (the number of documents containing a particular term) of terms in a corpus. Use as an example of documents the following:
+
+# Example documents
+documents = ["data mining data analysis", "machine learning data mining", "deep learning deep thought"]
+
+program -->
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
+# Example documents
+documents = ["data mining data analysis", "machine learning data mining", "deep learning deep thought"]
+
+doc_freq = defaultdict(int)
+
+for doc in documents:
+    unique_terms = set(doc.lower().split())
+    for term in unique_terms:
+        doc_freq[term] += 1
+
+terms = [term for term, freq in doc_freq.items()]
+frequencies = [freq for term, freq in doc_freq.items()]
+
+plt.figure(figsize=(10, 6))
+plt.bar(terms, frequencies, color='skyblue')
+plt.title("Document Frequencies in Corpus")
+plt.xlabel("Terms")
+plt.ylabel("Document Frequency")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+--------------------------------------------------------------
+
+Word cloud (15 points)
+Generate a word cloud from a collection of documents to visualize the most common terms.
+
+Hint: Use the wordcloud package
+
+from wordcloud import WordCloud
+and the following example of documents to test your script:
+
+docs = ["Python programming language", "Python and data analytics", "Programming in Python"]
+
+program -->
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+# Example documents
+docs = ["Python programming language", "Python and data analytics", "Programming in Python"]
+
+text = " ".join(docs)
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+plt.figure(figsize=(10, 6))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.title("Word Cloud of Document Terms")
+plt.show()
